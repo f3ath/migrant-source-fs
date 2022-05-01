@@ -1,2 +1,1 @@
-# migrant-source-fs
-Local file system migrations source
+Local file system migrations source for [migrant](https://pub.dev/packages/migrant)

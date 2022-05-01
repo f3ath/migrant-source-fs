@@ -1,0 +1,21 @@
+name: migrant_source_fs
+version: 0.0.1
+description: Local file system migrations source for Migrant
+homepage: "https://github.com/f3ath/migrant-source-fs"
+
+environment:
+  sdk: '>=2.16.0 <3.0.0'
+
+dependencies:
+  migrant: ^0.0.4
+
+dev_dependencies:
+  lints: ^1.0.1
+  test: ^1.20.1
+  check_coverage: ^0.0.4
+  cider: ^0.1.0
+
+cider:
+  link_template:
+    tag: https://github.com/f3ath/migrant-source-fs/releases/tag/%tag%
+    diff: https://github.com/f3ath/migrant-source-fs/compare/%from%...%to%
