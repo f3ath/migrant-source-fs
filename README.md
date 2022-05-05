@@ -1,1 +1,1 @@
-Local file system migrations source for [migrant](https://pub.dev/packages/migrant)
+Local file system migration source for [migrant](https://pub.dev/packages/migrant).

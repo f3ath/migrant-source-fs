@@ -21,7 +21,7 @@ class LocalDirectory extends MigrationSource {
         .whereType<File>()
         .map((file) {
           final name = file.uri.pathSegments.last;
-          final match = _format.readVersion(name);
+          final match = _format.parseVersion(name);
           if (match == null) return null;
           return MigrationFile(file, match);
         })
@@ -33,8 +33,7 @@ class LocalDirectory extends MigrationSource {
     migrations.sort();
 
     for (final migration in migrations) {
-      yield await Migration(
-          migration.version, await migration.file.readAsString());
+      yield Migration(migration.version, await migration.file.readAsString());
     }
   }
 }
