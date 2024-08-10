@@ -5,7 +5,8 @@ import 'package:test/test.dart';
 
 void main() async {
   final source = LocalFilesystem();
-  await source.load(Directory('test/migrations'), FileNameFormat(RegExp(r'\d{4}')));
+  await source.load(
+      Directory('test/migrations'), FileNameFormat(RegExp(r'\d{4}')));
 
   group('Read', () {
     test('First', () async {
@@ -25,5 +26,4 @@ void main() async {
       expect(m3, isNull);
     });
   });
-
 }
