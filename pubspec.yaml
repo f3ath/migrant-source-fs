@@ -1,5 +1,5 @@
 name: migrant_source_fs
-version: 0.0.2
+version: 0.1.0
 description: Local file system migrations source for Migrant
 homepage: "https://github.com/f3ath/migrant-source-fs"
 
