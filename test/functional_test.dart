@@ -26,4 +26,21 @@ void main() async {
       expect(m3, isNull);
     });
   });
+
+  group('Splitting', () {
+    test('Can split by two linebreaks', () async {
+      final source = LocalFilesystem();
+      await source.load(
+          Directory('test/migrations'), FileNameFormat(RegExp(r'\d{2}(?:_)')),
+          split: (sql) => sql.split('\n\n'));
+
+      final m0 = await source.getInitial();
+      expect(
+          m0.statements,
+          equals([
+            'create table foo (id text not null);',
+            'create index idx_foo_id on foo(id);'
+          ]));
+    });
+  });
 }
