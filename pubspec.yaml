@@ -1,5 +1,5 @@
 name: migrant_source_fs
-version: 0.1.0
+version: 0.1.1
 description: Local file system migrations source for Migrant
 homepage: "https://github.com/f3ath/migrant-source-fs"
 
@@ -10,7 +10,7 @@ dependencies:
   migrant: ^0.3.0
 
 dev_dependencies:
-  lints: ^4.0.0
+  lints: ^5.0.0
   test: ^1.20.1
   coverage: ^1.9.0
   check_coverage: ^0.0.7

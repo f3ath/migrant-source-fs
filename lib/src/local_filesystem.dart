@@ -8,12 +8,15 @@ import 'package:migrant_source_fs/src/file_name_format.dart';
 class LocalFilesystem implements MigrationSource {
   final _migrations = <Migration>[];
 
-  Future<int> load(Directory dir, FileNameFormat format) async {
+  /// Loads migrations from [dir] using [format] and [split].
+  /// Returns the number of loaded migrations.
+  Future<int> load(Directory dir, FileNameFormat format,
+      {Splitter split = noSplit}) async {
     await for (final file in dir.list()) {
       if (file is! File) continue;
       final version = format.parseVersion(file.uri.pathSegments.last);
       if (version == null) continue;
-      _migrations.add(Migration(version, [await file.readAsString()]));
+      _migrations.add(Migration(version, split(await file.readAsString())));
     }
     _migrations.sort((a, b) => a.version.compareTo(b.version));
     return _migrations.length;
@@ -30,3 +33,9 @@ class LocalFilesystem implements MigrationSource {
     return index + 1 < _migrations.length ? _migrations[index + 1] : null;
   }
 }
+
+/// Splits a file into SQL statements.
+typedef Splitter = List<String> Function(String sql);
+
+/// Does not perform any splitting.
+List<String> noSplit(String sql) => [sql];
